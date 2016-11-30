@@ -1,0 +1,14 @@
+{
+  "name": "tes_project",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-connect": "^5.0.0",
+    "gulp-htmlincluder": "^0.1.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp.spritesmith": "^6.2.1"
+  }
+}
