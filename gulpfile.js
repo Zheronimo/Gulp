@@ -4,9 +4,16 @@ var cleanCSS = require('gulp-clean-css');
 var includer = require('gulp-htmlincluder');
 var htmlmin = require('gulp-htmlmin');
 var connect = require('gulp-connect');
-var livereload = require('gulp-livereload')
+var livereload = require('gulp-livereload');
 var spritecreator = require('gulp.spritesmith');
+var less = require('gulp-less');
 
+gulp.task('less', function () {
+  return gulp.src('dev/less/style/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('build/css/style/'))
+    .pipe(connect.reload());
+});
 gulp.task('sprite', function () {
   var spriteData = gulp.src('dev/img/icon/*.png').pipe(spritecreator({
     imgName: 'sprite.png',
@@ -37,12 +44,15 @@ gulp.task('connect', function() {
   });
 });
 gulp.task('default', function(){
-  gulp.start('connect', 'html', 'concat');
+  gulp.start('connect', 'html', 'concat', 'less');
 
   gulp.watch(['dev/**/*.html'], function(event) {
     gulp.start('html');
   });
   gulp.watch(['dev/css/**/*.css'], function(event) {
     gulp.start('concat');
+  });
+  gulp.watch(['dev/less/**/*.less'], function(event) {
+    gulp.start('less');
   });
 });
